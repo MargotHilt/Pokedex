@@ -1,0 +1,9 @@
+@font-face {
+    font-family: PokemonGB;
+    src: url(../assets/PokemonGB.ttf) format("truetype")
+}
+
+h1 {
+    padding-left: 2em;
+    font-family: PokemonGB;
+}

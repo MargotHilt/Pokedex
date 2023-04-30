@@ -1,0 +1,25 @@
+<div class="card">
+    <h3>{{pokemonStats.name}}</h3>
+    <p *ngIf="pokemonSpecies" class="pokemon-genus">{{pokemonSpecies.genera[7].genus}}</p>
+    <div class="details">
+        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/{{pokemonStats.id}}.png">
+        <div class="types">
+            <p *ngFor="let types of pokemonStats.types" class="bg-{{types.type.name}}">{{types.type.name}}</p>
+        </div>
+        <div class="pokemon-characteristics">
+            <div class="pokemon-body">
+                <p>Weight: {{(pokemonStats.weight * 0.1).toFixed(1)}} kg</p>
+                <p>Height: {{(pokemonStats.height * 0.1).toFixed(1)}} m</p>
+            </div>
+            <div class="pokemon-stats">
+                <p>HP<br>{{pokemonStats.stats[0].base_stat}}</p>
+                <p>Atk<br>{{pokemonStats.stats[1].base_stat}}</p>
+                <p>Def<br>{{pokemonStats.stats[2].base_stat}}</p>
+                <p>Sp.A<br>{{pokemonStats.stats[3].base_stat}}</p>
+                <p>Sp.D<br>{{pokemonStats.stats[4].base_stat}}</p>
+                <p>Spe<br>{{pokemonStats.stats[5].base_stat}}</p>
+            </div>
+        </div>
+        <p *ngIf="pokemonSpecies" class="flavor-text">{{pokemonSpecies.flavor_text_entries[0].flavor_text}}</p>
+    </div>
+</div>

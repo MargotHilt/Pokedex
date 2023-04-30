@@ -1,0 +1,17 @@
+<div class="container">
+    <div class="list" [ngStyle]="{'width': modalOpen ? '60%' : '100%'}"
+        infinite-scroll
+        [infiniteScrollDistance]="2"
+        [infiniteScrollThrottle]="1000"
+        (scrolled)="onScroll()">
+        <ul>
+            <li *ngFor="let pokemon of pokemons" (click)="onClick($event)" id="{{pokemon.id}}">
+                <p id="{{pokemon.id}}">{{pokemon.id}}</p>
+                <p id="{{pokemon.id}}">{{pokemon.name}}</p>
+                <img id="{{pokemon.id}}" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/{{pokemon.id}}.png">
+            </li>
+        </ul>
+    </div>
+    <pokemon-card class="pokemon-card" *ngIf="modalOpen"
+    [pokemonStats]="pokemonStats" [pokemonSpecies]="pokemonSpecies"></pokemon-card>
+</div>

@@ -1,0 +1,46 @@
+
+ul{
+    padding: 0;
+    margin: 0 3em;
+}
+
+li {
+    color: rgb(112, 57, 9);
+    font-size: 20px;
+    font-weight: bold;
+    max-width: 700px;
+    min-width: 390px;
+    display: flex;
+    gap: 2em;
+    align-items: center;
+    justify-content: space-between;
+    list-style-type: none;
+    background-color: lightgoldenrodyellow;
+    padding: 1em 3em;
+    margin: 0 auto 0.5em auto;
+    border-radius: 1em;
+    text-transform: capitalize;
+    cursor: pointer;
+}
+
+li img {
+    height: 70px;
+}
+
+.container {
+    display: flex;
+    width: 100%;
+    max-width: 1500px;
+    margin: 0 auto; 
+}
+
+.list {
+    min-width: 400px;
+}
+
+.pokemon-card {
+    max-width: 500px;
+    position: fixed;
+    left: max(60%, 500px);
+    width: 50%;
+}

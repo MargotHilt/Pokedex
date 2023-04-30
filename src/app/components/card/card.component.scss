@@ -1,0 +1,139 @@
+.card {
+    color:rgb(6, 20, 69);
+    height: 80vh;
+    background-color: rgb(222, 243, 249);
+    border-radius: 1em;
+    width: 100%;
+    padding: 1em 3em 3em max(3em, 6vw);
+    overflow-x: scroll;
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
+}
+
+.card::-webkit-scrollbar {
+    display: none;
+  }
+
+.card::after {
+    content: "";
+  position: absolute;
+  z-index: 1;
+  bottom: 0;
+  left: 0;
+  pointer-events: none;
+  background-image: linear-gradient(to bottom, rgba(255,255,255,0), rgba(222,243,249, 1) 90%);
+  width: 100%;
+  height: 4em;
+  border-radius: 1em;
+}
+
+h3 {
+    font-size: 1.5rem;
+    text-transform: capitalize;
+    margin-bottom: 0;
+}
+
+img {
+    width: 200px;
+}
+
+.types {
+    display: flex;
+    margin-bottom: 0.5em;
+}
+
+.types p { 
+    border-radius: 1em;
+    padding: 0.5em 1.5em;
+    margin-right: 0.5em;
+}
+.pokemon-genus {
+    margin-top: 0.5em;
+    font-size: 0.85rem;
+}
+
+.pokemon-characteristics {
+    background: rgb(255, 255, 255);
+    padding: 0.5em;
+    border-radius: 0.5em;
+    max-width: max(70%, 270px)
+}
+
+.pokemon-characteristics p {
+    background: rgb(240, 250, 252);
+    border-radius: 0.5em;
+}
+
+.pokemon-body > p {
+    max-width: max(70%, 250px);
+    padding: 1em 1.5em;
+    margin: 0 auto;
+}
+
+.pokemon-stats > p {
+    width: 75px;
+    text-align: center;
+    margin: 0.5em auto 0 auto;
+    line-height: 1.5em;
+    padding: 1em 0;
+}
+
+.pokemon-body > p:first-child {
+    margin-bottom: 0.5em;
+}
+
+.pokemon-stats{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.flavor-text{
+    margin-top: 1.5em;
+    max-width: max(70%, 250px);
+    line-height: 1.5em;
+}
+
+@media (min-width: 1200px){
+
+    .card{
+        padding: 1em 3em 3em 3em;
+    }
+
+    .details {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .flavor-text{
+        max-width: 400px;
+    }
+
+    .pokemon-characteristics {
+        width: 400px;
+        max-width: 400px;
+    }
+
+    .pokemon-body {
+        display: flex;
+        gap: 4px;
+        justify-content: space-between;
+    }
+
+    .pokemon-body > p {
+        width: 190px;
+       margin: 0;
+    }
+
+    .pokemon-body > p:first-child {
+        margin-bottom: 0;
+    }
+
+    .pokemon-stats > p {
+        width: 60px;
+    }
+
+    .pokemon-stats {
+        gap: 4px;
+    }
+}
