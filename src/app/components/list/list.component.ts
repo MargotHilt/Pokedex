@@ -15,6 +15,7 @@ export class ListComponent {
   modalOpen: boolean = false
   pokemonStats : any = {}
   pokemonSpecies: any
+  flavorText: string = ""
 
   constructor(private pokemonService: PokemonService) {}
 
@@ -50,21 +51,14 @@ export class ListComponent {
     })  
   }
 
-  retrievePokemon(e: any){ 
-    this.pokemons.forEach(pokemon => {
-      if(pokemon.id == e.target.id){
-        this.pokemonStats = pokemon
-      }
-    })
-    this.pokemonService.getPokemons(this.pokemonStats.species.url).subscribe(res => {
-      this.pokemonSpecies = res
-    })
-  }
-
   onClick(e: any){
       if(this.pokemonStats.id == e.target.id || !this.modalOpen){
         this.modalOpen = !this.modalOpen
       }
-      this.retrievePokemon(e)
+      this.pokemons.forEach(pokemon => {
+        if(pokemon.id == e.target.id){
+          this.pokemonStats = pokemon
+        }
+      })
   }
 }
