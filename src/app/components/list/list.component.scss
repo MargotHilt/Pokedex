@@ -23,6 +23,10 @@ li {
     cursor: pointer;
 }
 
+li:active, li:focus {
+    background-color: rgb(199, 171, 80);
+}
+
 li img {
     height: 70px;
 }

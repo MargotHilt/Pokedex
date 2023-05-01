@@ -1,4 +1,4 @@
-<div class="card">
+<section (keydown)="refocus($event)" id="card" class="card">
     <h3>{{pokemonStats.name}}</h3>
     <p *ngIf="pokemonSpecies" class="pokemon-genus">{{pokemonSpecies.genera[7].genus}}</p>
     <div class="details">
@@ -22,4 +22,4 @@
         </div>
         <p *ngIf="pokemonSpecies" class="flavor-text">{{flavorText}}</p>
     </div>
-</div>
+</section>

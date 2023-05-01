@@ -9,6 +9,7 @@ import { PokemonService } from 'src/app/services/pokemon.service';
 
 export class CardComponent implements OnChanges{
  @Input() pokemonStats: any
+ @Input() idTracker: any
  flavorText: string = ""
  pokemonSpecies: any 
 
@@ -25,6 +26,18 @@ export class CardComponent implements OnChanges{
         }
       }
     })
+  }
+
+  refocus(e: any){
+  if((e.shiftKey && e.key === "Tab")){
+    window.setTimeout(() => document.getElementById(`${Number(this.idTracker)}`)?.focus(), 0)
+    }
+    if(e.key === "Tab"){
+     document.getElementById(`${Number(this.idTracker) - 1}`)?.focus()
+    }
+    if(e.keyCode === 37){
+      document.getElementById(this.idTracker)?.focus()
+    }
   }
 
 }

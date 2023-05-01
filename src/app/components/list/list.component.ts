@@ -16,6 +16,7 @@ export class ListComponent {
   pokemonStats : any = {}
   pokemonSpecies: any
   flavorText: string = ""
+  idTracker = 1
 
   constructor(private pokemonService: PokemonService) {}
 
@@ -60,5 +61,27 @@ export class ListComponent {
           this.pokemonStats = pokemon
         }
       })
+      document.getElementById("card")?.focus()  
   }
+
+  trackKeys(e: any){
+    if((e.shiftKey && e.key === "Tab")){
+      this.idTracker = Number(e.target.id) - 1
+    }
+    else if(e.key === "Tab"){
+      this.idTracker = Number(e.target.id) + 1
+    }
+    if(e.keyCode === 39){
+      document.getElementById("card")?.focus()
+    }
+    if(e.keyCode === 40){
+      this.idTracker = Number(e.target.id) + 1
+      document.getElementById(`${Number(e.target.id) + 1}`)?.focus()
+    }
+    if(e.keyCode === 38){
+      this.idTracker = Number(e.target.id) - 1
+      document.getElementById(`${Number(e.target.id) - 1}`)?.focus()
+    }
+  }
+
 }
