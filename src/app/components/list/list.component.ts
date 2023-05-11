@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Input, SimpleChanges } from '@angular/core';
 import { PokemonService } from 'src/app/services/pokemon.service';
-import { concat} from 'rxjs';
-import {switchMap, zipAll } from 'rxjs/operators';
+import { concat } from 'rxjs';
+import { switchMap, zipAll } from 'rxjs/operators';
 
 @Component({
   selector: 'pokemon-list',
@@ -10,6 +10,7 @@ import {switchMap, zipAll } from 'rxjs/operators';
 })
 
 export class ListComponent {
+  @Input() searchValue!: string 
   pokemons: any[] = []
   url = this.pokemonService.apiBaseUrl
   modalOpen: boolean = false
@@ -17,6 +18,8 @@ export class ListComponent {
   pokemonSpecies: any
   flavorText: string = ""
   idTracker = 1
+  scrollActivated: boolean = true
+  windowScroll: any = window.scrollY
 
   constructor(private pokemonService: PokemonService) {}
 
@@ -34,8 +37,30 @@ export class ListComponent {
       .subscribe(result => this.pokemons = result)
   }
   
+  ngOnChanges(changes:SimpleChanges) {
+      if(!changes["searchValue"].isFirstChange() && this.searchValue !== ""){
+      this.pokemonService.getPokemons("https://pokeapi.co/api/v2/pokemon?limit=100000").pipe(
+        switchMap(res => {
+            const requests = res.results.reduce((filtered: any ,pokemon: any) => 
+            {if(pokemon.name.startsWith(this.searchValue))
+              filtered.push(this.pokemonService.getPokemons(pokemon.url))
+            return filtered
+            }, [])
+          return concat<any>(requests).pipe(
+            zipAll()
+          )
+        })
+      )
+      .subscribe(result => this.pokemons = result)
+      this.scrollActivated = false
+    }
+    else {this.ngOnInit()
+          this.scrollActivated = true}
+  }
+
   onScroll(){
-    console.log(this.pokemons)
+    console.log(this.windowScroll)
+    if(this.scrollActivated){
     this.pokemonService.getPokemons(this.url).subscribe(res => {
       this.url = res.next
       this.pokemonService.getPokemons(this.url).pipe(
@@ -49,7 +74,7 @@ export class ListComponent {
         })
       )
       .subscribe(result => this.pokemons = this.pokemons.concat(result))
-    })  
+    })}
   }
 
   onClick(e: any){
@@ -85,3 +110,10 @@ export class ListComponent {
   }
 
 }
+
+window.addEventListener("scroll", () => {
+  if(window.scrollY > 60){
+    document.getElementById("pokemon-card")!.style.bottom = "15%"
+  }
+  else document.getElementById("pokemon-card")!.style.bottom = "auto"
+})

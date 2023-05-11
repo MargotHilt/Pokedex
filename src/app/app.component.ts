@@ -7,5 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppComponent {
   title = 'Pokedex';
+  searchValue: string = ""
+
+  setSearchValue(e: any){
+    this.searchValue = e.target.value
+  }
 
 }

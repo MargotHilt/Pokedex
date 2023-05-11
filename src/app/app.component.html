@@ -1,3 +1,4 @@
 <h1>{{ title }}</h1>
-    <pokemon-list></pokemon-list>
+<input type="text" (input)="setSearchValue($event)" placeholder="Search">    
+<pokemon-list [searchValue]="searchValue" ></pokemon-list>
 
